@@ -1,0 +1,12 @@
+slug = "tribu"
+bundle = [
+    "docs/README.pdf",
+    "tests/*.py",
+    "fixtures/*.json",
+    ".gitignore",
+    "pyproject.toml",
+    "uv.lock",
+    "justfile",
+    "pytest.ini",
+]
+test_cmd = "uv run pytest -s"

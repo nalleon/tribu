@@ -1,0 +1,16 @@
+[project]
+name = "tribu"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "django>=5.2.7",
+    "pillow>=12.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "faker>=37.12.0",
+    "ipython>=9.6.0",
+    "model-bakery>=1.20.5",
+    "pytest-django>=4.11.1",
+]
