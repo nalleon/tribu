@@ -12,4 +12,4 @@ class Echo(models.Model):
     )
 
     def __str__(self):
-        return self.pk
+        return f'Pk: {self.pk}'

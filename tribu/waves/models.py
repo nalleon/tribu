@@ -20,5 +20,5 @@ class Wave(models.Model):
     )
 
 
-    # def __str__(self):
-    #     return f'Comment: {self.content}'
+    def __str__(self):
+        return f'Pk: {self.pk}'
