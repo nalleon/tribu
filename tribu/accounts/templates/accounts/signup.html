@@ -1,0 +1,10 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+{% include "header.html" with subtitle="Login" %}
+
+<form method="post" novalidate>
+  {% csrf_token %} {{ form }}
+  <input type="submit" value="Sign up" />
+</form>
+{% endblock %}

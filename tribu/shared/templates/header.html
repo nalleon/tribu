@@ -1,11 +1,18 @@
-{%load static%}
-<header>
-  
-    <div class="titleContainer">
-      <a class="textLink" href="{% url 'index' %}">
-        <h1 class="title">The Ultimate Blog</h1>
-        <h2 class="title">{{ subtitle }}</h2>
-      </a>
-    </div>
+<div class="header">
+  <h1>
+    {% comment %} <a href="{% url 'posts:post_list' %}"> {% endcomment %}
+      Tribu
+    {% comment %} </a> {% endcomment %}
+    </h1>
+  <h2>{{ subtitle }}</h2>
 
-</header>
+  <h4>
+    {% comment %} {% if user.is_authenticated %}
+      <a href="{% url 'accounts:profile' %}"> {{ user.username }} </a> |
+      <a href="{% url 'accounts:logout' %}">Logout</a>
+    {% else %}
+      <a href="{% url 'accounts:login' %}">Login</a> |
+      <a href="{% url 'accounts:signup' %}">Signup</a>
+    {% endif %} {% endcomment %}
+  </h4>
+</div>

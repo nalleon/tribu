@@ -1,0 +1,108 @@
+body {
+  background-color: rgb(18, 19, 19);
+  color: white;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.box {
+  background-color: aliceblue;
+  width: 50rem;
+  height: fit-content;
+  border-radius: 10px;
+  color: black;
+  text-align: justify;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  margin-top: 1rem;
+  box-shadow: 3px 3px 0px rgb(68, 67, 67);
+
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: end;
+  justify-items: end;
+}
+
+.pill p {
+  background: linear-gradient(#3f8044, #90c77f);
+  border-radius: 20px;
+  width: fit-content;
+  font-size: small;
+  font-style: italic;
+  padding: 5px;
+  margin: 10px;
+}
+
+.title {
+  font-variant: small-caps;
+  width: 49rem;
+  border-bottom: 1px solid gray;
+}
+
+.content {
+  color: gray;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.pill-create p {
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  width: 2rem;
+  height: 2rem;
+  font-size: x-large;
+  font-style: bold;
+  margin: 0 auto;
+  color: black;
+}
+
+.pill-create p a {
+  color: rgb(0, 0, 0);
+}
+.create {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  width: 400px;
+}
+
+.index {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.img-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-pfp{
+  width: 5rem;
+}
+
+.messages{
+  list-style-type: none;
+}
+
+.success, .error, .debug, .warning, .info{
+  font-variant: small-caps;
+  text-align: center;
+}

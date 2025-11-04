@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
-</html>
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+{% include "header.html" with subtitle="Work in progress!" %}
+<div class="index">
+  <div class="img-container">
+    <img src="../static/images/image.jpg" alt="WIP" />
+  </div>
+</div>
+{% endblock %}
