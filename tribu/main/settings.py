@@ -126,6 +126,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Directorio donde se guardan las fotos
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Url donde podemos ver las fotos
 MEDIA_URL = 'media/'
