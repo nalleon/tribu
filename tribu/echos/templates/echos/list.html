@@ -1,0 +1,31 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+{% include "header.html" %}
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+
+  <p class="crearButton">
+    <a href="" class="textButton">Crear nuevo Echo</a>
+  </p>
+
+  {% if echos|length > 0 %}
+    <p>Tribu has posted {{echos|length}} echos so far!</p>
+  {%endif%}
+
+  {% for echo in echos %}
+    <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink'%}">
+          <p><a href="">{{ echo.user.username }}</a></p>
+          <p>{{ echo.updated_at }}</p>
+          <p>{{ echo.content | truncatewords:20 }}</p>
+          {% comment %} <p>Read more <a href="{% url '' echo %}">here</a></p> {% endcomment %}
+        </div>
+  {% endfor %}
+{% endblock %}

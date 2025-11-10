@@ -6,7 +6,7 @@ app_name = 'echos'
 
 
 urlpatterns = [
-    # path('', views.post_list, name='post-list'),
+    path('', views.echo_list, name='echo-list'),
     # path('add/', views.add_post, name='add-post'),
     # path('<post:post>/delete/', views.delete_post, name='delete-post'),
     # path('<post:post>/', views.post_detail, name='post-detail'),
