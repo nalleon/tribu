@@ -5,6 +5,8 @@ from django.shortcuts import redirect, render
 from .models import Profile
 
 
+@login_required
+
 def user_list(request):
     try:
         users = Profile.objects.all()
@@ -14,15 +16,32 @@ def user_list(request):
 
     return render(request, 'users/list.html', {'users': users})
 
-def user_details(request):
+
+@login_required
+def user_detail(request, username):
+
+    # try:
+    #     user = Profile.objects.all()
+
+    # except Profile.DoesNotExist:
+    #     return HttpResponse('There are no Echos currently!')
 
     return redirect('index')
 
+@login_required
 def user_echos(request):
 
     return redirect('index')
 
+@login_required
+def my_user_detail(request):
 
+    return redirect('index')
+
+@login_required
+def edit_profile(request):
+
+    return redirect('index')
 
 @login_required
 def profile_view(request):

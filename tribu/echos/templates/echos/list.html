@@ -13,19 +13,29 @@
   {% endif %}
 
   <p class="crearButton">
-    <a href="" class="textButton">Crear nuevo Echo</a>
+    <a href="{% url 'echos:add-echo' %}" class="textButton">Add echo</a>
   </p>
 
   {% if echos|length > 0 %}
-    <p>Tribu has posted {{echos|length}} echos so far!</p>
+    {% if echos|length > 1 %}
+      <p>Tribu has posted {{echos|length}} echos so far!</p>
+    {% else %}
+      <p>Tribu has posted {{echos|length}} echo so far!</p>
+    {% endif %}
+    
+    {% for echo in echos %}
+      <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink'%}">
+            <p><a href="{% url 'users:profile' echo.user.username %}">{{ echo.user.username }}</a></p>
+            <p>{{ echo.created_at|timesince }}</p>
+            <p>{{ echo.content | truncatewords:20 }}</p>
+            <p>Read more <a href="{% url 'echos:echo-detail' echo.pk %}">here</a></p>
+          </div>
+    {% endfor %}
+  {% else %}
+    <div>
+      <p>No echos yet.</p>
+    </div>
   {%endif%}
 
-  {% for echo in echos %}
-    <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink'%}">
-          <p><a href="">{{ echo.user.username }}</a></p>
-          <p>{{ echo.created_at|timesince }}</p>
-          <p>{{ echo.content | truncatewords:20 }}</p>
-          {% comment %} <p>Read more <a href="{% url '' echo %}">here</a></p> {% endcomment %}
-        </div>
-  {% endfor %}
+  
 {% endblock %}
