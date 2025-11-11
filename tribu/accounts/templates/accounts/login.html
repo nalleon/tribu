@@ -3,11 +3,15 @@
 {% block content %} 
 {% include "header.html" with subtitle="Login" %}
 
-<div>
-  {% if messages %}
-    <p>{{}}</p>
-  {% endif %}
-</div>
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+        </li>
+    {% endfor %}
+  </ul>
+{% endif %}
 
 <form method="post" novalidate>
   {% csrf_token %} {{ form }}
