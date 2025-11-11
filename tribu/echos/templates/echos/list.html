@@ -23,7 +23,7 @@
   {% for echo in echos %}
     <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink'%}">
           <p><a href="">{{ echo.user.username }}</a></p>
-          <p>{{ echo.updated_at }}</p>
+          <p>{{ echo.created_at|timesince }}</p>
           <p>{{ echo.content | truncatewords:20 }}</p>
           {% comment %} <p>Read more <a href="{% url '' echo %}">here</a></p> {% endcomment %}
         </div>

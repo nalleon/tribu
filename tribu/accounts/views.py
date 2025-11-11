@@ -1,11 +1,10 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
 
 from .forms import LoginForm, SignupForm
+
 
 def user_login(request):
     FALLBACK_REDIRECT = 'index'
@@ -48,12 +47,3 @@ def user_signup(request):
     else:
         form = SignupForm()
     return render(request, 'accounts/signup.html', {'form': form})
-
-@login_required
-def profile_view(request):
-    profile = request.user.profile
-    posts = request.user.posts.all()
-    return render(request, 'accounts/profile.html', {
-        'profile': profile,
-        'posts': posts
-    })
