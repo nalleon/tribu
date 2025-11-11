@@ -1,0 +1,14 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+{% include "header.html" %}
+
+{% if users|length > 0 %}
+  <div class="users">
+    {% for user in users %}
+    <p style="color:white"><a href="{% url 'users:profile' user.username %}">{{ user.username }}</a></p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% endblock %}

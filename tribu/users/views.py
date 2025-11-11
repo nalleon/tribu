@@ -12,7 +12,7 @@ def user_list(request):
         users = Profile.objects.all()
 
     except Profile.DoesNotExist:
-        return HttpResponse('There are no Echos currently!')
+        return HttpResponse('There are no users currently!')
 
     return render(request, 'users/list.html', {'users': users})
 
