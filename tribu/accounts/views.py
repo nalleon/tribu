@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 from .forms import LoginForm, SignupForm
 
@@ -19,7 +20,7 @@ def user_login(request):
                 login(request, user)
                 return redirect(request.GET.get('next', reverse(FALLBACK_REDIRECT)))
             else:
-                form.add_error(None, 'Incorrect username or password.')
+                messages.error(request, 'Incorrect username or password')
     else:
         form = LoginForm()
     return render(request, 'accounts/login.html', {'form': form})

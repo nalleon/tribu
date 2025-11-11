@@ -3,9 +3,19 @@
 {% block content %} 
 {% include "header.html" with subtitle="Login" %}
 
+<div>
+  {% if messages %}
+    <p>{{}}</p>
+  {% endif %}
+</div>
+
 <form method="post" novalidate>
   {% csrf_token %} {{ form }}
   <input type="submit" value="Login" />
 </form>
+
+<div>
+  <p><a href="{% url 'signup' %}">¿No tienes cuenta?</a></p>
+</div>
 
 {% endblock %}

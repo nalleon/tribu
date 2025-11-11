@@ -22,6 +22,7 @@ from django.shortcuts import render
 
 urlpatterns = [
     path('', lambda r: render(r, 'index.html'), name='index'),
+    path('', include('accounts.urls')),
     path('admin/', admin.site.urls),
     path('echos/', include('echos.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
