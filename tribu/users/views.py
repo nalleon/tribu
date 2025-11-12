@@ -20,13 +20,11 @@ def user_list(request):
 @login_required
 def user_detail(request, username):
 
-    # try:
-    #     user = Profile.objects.all()
-
-    # except Profile.DoesNotExist:
-    #     return HttpResponse('There are no Echos currently!')
-
-    return redirect('index')
+    try:
+        user = Profile.objects.get(username=username)
+    except Profile.DoesNotExist:
+        return HttpResponse('This user does not exist!')
+    return render(request, 'users/profile/profile.html', {"users": user})
 
 @login_required
 def user_echos(request):
