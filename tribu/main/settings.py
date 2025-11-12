@@ -131,3 +131,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Url donde podemos ver las fotos
 MEDIA_URL = 'media/'
+
+LOGIN_URL = 'login'

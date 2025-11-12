@@ -6,7 +6,6 @@ from .models import Profile
 
 
 @login_required
-
 def user_list(request):
     try:
         users = Profile.objects.all()
@@ -21,10 +20,10 @@ def user_list(request):
 def user_detail(request, username):
 
     try:
-        user = Profile.objects.get(username=username)
+        user = Profile.objects.get(user__username=username)
     except Profile.DoesNotExist:
-        return HttpResponse('This user does not exist!')
-    return render(request, 'users/profile/profile.html', {"users": user})
+        return HttpResponse(f'This user does not exist! {username}')
+    return render(request, 'users/profile/profile.html', {"profile": user})
 
 @login_required
 def user_echos(request):

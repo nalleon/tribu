@@ -1,0 +1,16 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+{% include "header.html" %}
+
+{% if profile %}
+  <div class="user">
+    <div class="img-post">
+      <img class="img-post" src="{{ profile.avatar.url }}"/>
+    </div>
+    <p>{{profile.user.first_name}} {{profile.user.last_name}} {{profile.user.username}} {{profile.user.email}}</p>
+    <p>{{profile.bio}}</p>
+  </div>
+{% endif %}
+
+{% endblock %}

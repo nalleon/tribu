@@ -25,5 +25,5 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('users/', include('users.urls')),
     path('admin/', admin.site.urls),
-    path('echos/', include('echos.urls'))
+    path('echos/', include('echos.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
