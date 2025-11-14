@@ -10,7 +10,6 @@ from .forms import EditProfileForm
 def user_list(request):
     try:
         users = Profile.objects.all()
-        print(users)
     except Profile.DoesNotExist:
         return HttpResponse('There are no users currently!')
 
@@ -21,32 +20,35 @@ def user_list(request):
 def user_detail(request, username):
 
     try:
-        user = Profile.objects.get(user__username=username)
+        profile = Profile.objects.get(user__username=username)
     except Profile.DoesNotExist:
         return HttpResponse(f'This user does not exist! {username}')
-    return render(request, 'users/profile/profile.html', {'profile': user})
+    return render(request, 'users/profile/profile.html', {'profile': profile})
 
 @login_required
-def user_echos(request):
-
-    return redirect('index')
+def user_echos(request, username):
+    try:
+        profile = Profile.objects.get(user__username=username)
+    except Profile.DoesNotExist:
+        return HttpResponse(f'This user does not exist! {username}')
+    return render(request, 'users/profile/profile-echos.html', {'profile': profile})
 
 @login_required
 def my_user_detail(request):
     username = request.user.username
-    return redirect('users:profile',{'username':username})
+    return redirect('users:profile', username=username)
 
 @login_required
 def edit_profile(request, profile: Profile):
 
-    if request.method == 'POST':
-        if (form := EditProfileForm(request.POST, instance=profile)).is_valid():
+    # if request.method == 'POST':
+    #     if (form := EditProfileForm(request.POST, instance=profile)).is_valid():
 
-            profile.save(profile.user)
-            return redirect('profiles:profile-list')
+    #         profile.save(profile.user)
+    #         return redirect('profiles:profile-list')
 
-    else:
-        form = EditProfileForm(instance=profile)
+    # else:
+    #     form = EditProfileForm(instance=profile)
 
     return redirect('index')
 
