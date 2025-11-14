@@ -50,19 +50,19 @@ def test_user_detail_page_requires_authentication(client, user):
 
 
 @pytest.mark.django_db
-def test_user_detail_page_contains_expected_user_info(client, user, another_user_with_profile):
+def test_user_detail_page_contains_expected_user_info(client, user, another_user):
     client.force_login(user)
 
-    url = conftest.USER_DETAIL_URL.format(username=another_user_with_profile.username)
+    url = conftest.USER_DETAIL_URL.format(username=another_user.username)
     response = client.get(url)
 
     assert response.status_code == 200
-    assertContains(response, another_user_with_profile.username)
-    assertContains(response, another_user_with_profile.first_name)
-    assertContains(response, another_user_with_profile.last_name)
-    assertContains(response, another_user_with_profile.email)
-    assertContains(response, another_user_with_profile.profile.bio)
-    assertContains(response, another_user_with_profile.profile.avatar.url)
+    assertContains(response, another_user.username)
+    assertContains(response, another_user.first_name)
+    assertContains(response, another_user.last_name)
+    assertContains(response, another_user.email)
+    assertContains(response, another_user.profile.bio)
+    assertContains(response, another_user.profile.avatar.url)
 
 
 @pytest.mark.django_db
@@ -196,19 +196,19 @@ def test_user_echos_page_requires_authentication(client, user, another_user):
 
 
 @pytest.mark.django_db
-def test_user_echos_page_contains_expected_user_info(client, user, another_user_with_profile):
+def test_user_echos_page_contains_expected_user_info(client, user, another_user):
     client.force_login(user)
 
-    url = conftest.USER_ECHOS_URL.format(username=another_user_with_profile.username)
+    url = conftest.USER_ECHOS_URL.format(username=another_user.username)
     response = client.get(url)
 
     assert response.status_code == 200
-    assertContains(response, another_user_with_profile.username)
-    assertContains(response, another_user_with_profile.first_name)
-    assertContains(response, another_user_with_profile.last_name)
-    assertContains(response, another_user_with_profile.email)
-    assertContains(response, another_user_with_profile.profile.bio)
-    assertContains(response, another_user_with_profile.profile.avatar.url)
+    assertContains(response, another_user.username)
+    assertContains(response, another_user.first_name)
+    assertContains(response, another_user.last_name)
+    assertContains(response, another_user.email)
+    assertContains(response, another_user.profile.bio)
+    assertContains(response, another_user.profile.avatar.url)
 
 
 @pytest.mark.django_db
@@ -311,21 +311,21 @@ def test_my_user_detail_redirects_to_own_profile(client, user):
 
 
 @pytest.mark.django_db
-def test_edit_profile_page_requires_authentication(client, user_with_profile):
-    url = conftest.PROFILE_EDIT_URL.format(username=user_with_profile.username)
+def test_edit_profile_page_requires_authentication(client, user):
+    url = conftest.PROFILE_EDIT_URL.format(username=user.username)
     response = client.get(url)
     assert response.status_code == 302
     assert response.url == f'/login/?next={url}'
 
-    client.force_login(user_with_profile)
+    client.force_login(user)
     response = client.get(url)
     assert response.status_code == 200
 
 
 @pytest.mark.django_db
-def test_edit_profile_page_contains_expected_form_fields(client, user_with_profile):
-    client.force_login(user_with_profile)
-    url = conftest.PROFILE_EDIT_URL.format(username=user_with_profile.username)
+def test_edit_profile_page_contains_expected_form_fields(client, user):
+    client.force_login(user)
+    url = conftest.PROFILE_EDIT_URL.format(username=user.username)
     response = client.get(url)
 
     assert response.status_code == 200
@@ -347,11 +347,9 @@ def test_edit_profile_page_shows_404_for_nonexistent_user(client, user):
 
 
 @pytest.mark.django_db
-def test_edit_profile_page_forbids_editing_another_users_profile(
-    client, user, another_user_with_profile
-):
+def test_edit_profile_page_forbids_editing_another_users_profile(client, user, another_user):
     client.force_login(user)
-    url = conftest.PROFILE_EDIT_URL.format(username=another_user_with_profile.username)
+    url = conftest.PROFILE_EDIT_URL.format(username=another_user.username)
     response = client.get(url)
 
     assert response.status_code == 403
@@ -360,12 +358,12 @@ def test_edit_profile_page_forbids_editing_another_users_profile(
 @pytest.mark.django_db
 def test_edit_profile_page_allows_updating_profile(
     client,
-    user_with_profile,
+    user,
     image,
     uploads_folder,  # noqa F811
 ):
-    client.force_login(user_with_profile)
-    url = conftest.PROFILE_EDIT_URL.format(username=user_with_profile.username)
+    client.force_login(user)
+    url = conftest.PROFILE_EDIT_URL.format(username=user.username)
     new_bio = 'This is my new bio.'
     payload = {'bio': new_bio, 'avatar': image}
     response = client.post(url, payload)
@@ -373,17 +371,17 @@ def test_edit_profile_page_allows_updating_profile(
     assert response.status_code == 302
     assert response.url == conftest.PROFILE_ME_URL
 
-    user_with_profile.refresh_from_db()
-    assert user_with_profile.profile.bio == new_bio
-    assert user_with_profile.profile.avatar.size == image.size, (
+    user.refresh_from_db()
+    assert user.profile.bio == new_bio
+    assert user.profile.avatar.size == image.size, (
         'La imagen de avatar que se ha subido no se ha guardado correctamente en el perfil.'
     )
 
 
 @pytest.mark.django_db
-def test_edit_profile_shows_confirmation_message_after_done(client, user_with_profile):
-    client.force_login(user_with_profile)
-    url = conftest.PROFILE_EDIT_URL.format(username=user_with_profile.username)
+def test_edit_profile_shows_confirmation_message_after_done(client, user):
+    client.force_login(user)
+    url = conftest.PROFILE_EDIT_URL.format(username=user.username)
     new_bio = 'This is my new bio.'
     payload = {'bio': new_bio}
     response = client.post(url, payload, follow=True)

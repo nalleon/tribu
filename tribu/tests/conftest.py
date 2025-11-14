@@ -39,26 +39,26 @@ PROFILE_EDIT_URL = '/users/{username}/edit/'
 
 @pytest.fixture
 def user():
-    return baker.make_recipe('tests.user')
-
-
-@pytest.fixture
-def user_with_profile():
     user = baker.make_recipe('tests.user')
     baker.make_recipe('tests.profile', user=user)
     return user
+
+
+@pytest.fixture
+def user_without_profile():
+    return baker.make_recipe('tests.user')
 
 
 @pytest.fixture
 def another_user():
-    return baker.make_recipe('tests.user')
-
-
-@pytest.fixture
-def another_user_with_profile():
     user = baker.make_recipe('tests.user')
     baker.make_recipe('tests.profile', user=user)
     return user
+
+
+@pytest.fixture
+def another_user_without_profile():
+    return baker.make_recipe('tests.user')
 
 
 @pytest.fixture

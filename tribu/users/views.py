@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-
+from django.http import HttpResponseNotFound
 from .models import Profile
 from .forms import EditProfileForm
 
@@ -22,7 +22,9 @@ def user_detail(request, username):
     try:
         profile = Profile.objects.get(user__username=username)
     except Profile.DoesNotExist:
-        return HttpResponse(f'This user does not exist! {username}')
+        return HttpResponseNotFound(
+            f"User with username '{username}' does not exist"
+        )    
     return render(request, 'users/profile/profile.html', {'profile': profile})
 
 @login_required
@@ -30,7 +32,9 @@ def user_echos(request, username):
     try:
         profile = Profile.objects.get(user__username=username)
     except Profile.DoesNotExist:
-        return HttpResponse(f'This user does not exist! {username}')
+        return HttpResponseNotFound(
+            f"User with username '{username}' does not exist"
+        )    
     return render(request, 'users/profile/profile-echos.html', {'profile': profile})
 
 @login_required
