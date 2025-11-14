@@ -18,7 +18,6 @@ def user_list(request):
 
 @login_required
 def user_detail(request, username):
-
     try:
         profile = Profile.objects.get(user__username=username)
     except Profile.DoesNotExist:
@@ -43,7 +42,7 @@ def my_user_detail(request):
     return redirect('users:profile', username=username)
 
 @login_required
-def edit_profile(request, profile: Profile):
+def edit_profile(request, username):
 
     # if request.method == 'POST':
     #     if (form := EditProfileForm(request.POST, instance=profile)).is_valid():
