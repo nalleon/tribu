@@ -10,9 +10,11 @@
     </div>
     <p>{{profile.user.first_name}} {{profile.user.last_name}} {{profile.user.username}} {{profile.user.email}}</p>
     <p>{{profile.bio}}</p>
-    <div class="edit-profile">
-      <p><a href="{% url 'users:user-edit' profile.user.username %}">{{ echo.user.username }}</a></p>
-    </div>
+    {% if request.user == profile.user %}
+      <div class="edit-profile">
+        <p><a href="{% url 'users:user-edit' profile.user.username %}">Editar</a></p>
+      </div>
+    {% endif %}
   </div>
 
   {% if  profile.user.echos.all|length > 0 %}
@@ -23,9 +25,12 @@
           <p>{{ echo.created_at|timesince }}</p>
           <p>{{ echo.content | truncatewords:20 }}</p>
           <p>Read more <a href="{% url 'echos:echo-detail' echo.pk %}">here</a></p>
-        </div>
+        </div>        
       {% endif %}
     {% endfor %}
+    {% if profile.user.echos.all|length > 5 %}
+      <p><a href="{% url 'users:user-echos' profile.user.username %}">Show all echos</a></p>
+    {% endif %}
   {% else %}
       <p>No echos yet</p>
   {% endif %}
