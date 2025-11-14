@@ -3,10 +3,10 @@
 {% block content %}
 {% include "header.html" %}
 
-{% if users|length > 0 %}
+{% if profiles|length > 0 %}
   <div class="users">
-    {% for user in users %}
-    <p style="color:white"><a href="{% url 'users:profile' user.username %}">{{ user.username }}</a></p>
+    {% for profile in profiles %}
+      <p style="color:white"><a href="{% url 'users:profile' profile.user.username %}">{{ profile.user.username }}</a></p>
     {% endfor %}
   </div>
 {% endif %}
