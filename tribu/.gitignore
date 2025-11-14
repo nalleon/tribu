@@ -1,5 +1,5 @@
 .mypy_cache
-db.sqlite3
 .venv
 *.pyc
 .env
+db.sqlite3

@@ -1,5 +1,5 @@
 import pytest
-from pytest_django.asserts import assertContains
+from pytest_django.asserts import assertContains, assertNotContains
 
 from tests import conftest
 
@@ -75,6 +75,13 @@ def test_login_page_contains_signup_link(client):
     response = client.get(conftest.LOGIN_URL)
     assert response.status_code == 200
     assertContains(response, conftest.SIGNUP_URL)
+
+
+@pytest.mark.django_db
+def test_login_page_does_not_contains_login_link(client):
+    response = client.get(conftest.LOGIN_URL)
+    assert response.status_code == 200
+    assertNotContains(response, conftest.LOGIN_URL)
 
 
 # ==============================================================================
@@ -200,3 +207,10 @@ def test_signup_page_contains_login_link(client):
     response = client.get(conftest.SIGNUP_URL)
     assert response.status_code == 200
     assertContains(response, conftest.LOGIN_URL)
+
+
+@pytest.mark.django_db
+def test_signup_page_does_not_contains_signup_link(client):
+    response = client.get(conftest.SIGNUP_URL)
+    assert response.status_code == 200
+    assertNotContains(response, conftest.SIGNUP_URL)

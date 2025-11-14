@@ -29,7 +29,7 @@ def test_echo_list_page_contains_expected_echo_information(client, user):
     for echo in echos:
         assertContains(response, truncatewords(echo.content, 20))
         assertContains(response, echo.user.username)
-        assertContains(response, f'/users/{echo.user.username}/')
+        assertContains(response, conftest.USER_DETAIL_URL.format(username=echo.user.username))
         assertContains(response, conftest.ECHO_DETAIL_URL.format(echo_pk=echo.pk))
         assertContains(response, timesince(echo.created_at))
 
