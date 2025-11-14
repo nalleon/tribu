@@ -17,14 +17,12 @@ user = Recipe(
 echo = Recipe(
     'echos.Echo',
     content=partial(fake.paragraph, nb_sentences=10),
-    user=foreign_key(user),
     _fill_optional=True,
 )
 
 wave = Recipe(
     'waves.Wave',
     content=partial(fake.sentence, nb_words=15),
-    user=foreign_key(user),
     _fill_optional=True,
 )
 

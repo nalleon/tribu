@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-# from .forms import AddEchoForm
-# from .forms import EditEchoForm
+from .forms import AddEchoForm
+from .forms import EditEchoForm
 from .models import Echo
 
 
@@ -26,5 +26,13 @@ def echo_detail(request, pk):
 
 @login_required
 def add_echo(request):
-    return render ('index.html')
+
+    if request.method == 'POST':
+        if (form := AddEchoForm(request.POST)).is_valid():
+            echo = form.save(request.user)
+            return redirect('echos:echo-details', echo_pk=echo.pk)
+        else:
+            form = AddEchoForm()
+
+    return render(request, 'echos/echo/add.html', {'form': form})
 

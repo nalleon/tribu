@@ -3,5 +3,10 @@
 {% block content %}
 {% include "header.html" %}
 
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Enviar">
+  </form>
 
 {% endblock %}
