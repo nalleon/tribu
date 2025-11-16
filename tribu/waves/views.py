@@ -1,29 +1,39 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .forms import EditWaveForm
 
 from echos.models import Echo
 from .models import Wave
 
 
 @login_required
-def echo_waves(request, echo_pk):
+def edit_wave(request, wave_pk):
+    wave = get_object_or_404(Wave, pk=wave_pk)
+    if wave.user != request.user:
+        raise PermissionDenied
+        
+    echo = wave.echo
+    if request.method == 'POST':
+        if (form := EditWaveForm(request.POST, instance=wave)).is_valid():
+            wave = form.save(commit=False)
+            wave.save()
+            messages.success(request, 'Wave updated successfully')  
+            return redirect('echos:echo-detail', echo_pk=echo.pk)
+    else:
+        form = EditWaveForm(instance=wave)
+    return render(request, 'waves/wave/edit.html', {'form': form, 'echo':echo})
 
-    try:
-        echo = Echo.objects.get(pk=echo_pk)
-
-    except Echo.DoesNotExist:
-        return HttpResponse('There is no echo with that key currently!')
-
-    return render(request, 'waves/echo-waves.html', {'echo': echo})
 
 @login_required
-def echo_waves_add(request, echo_pk):
+def delete_wave(request, wave_pk):
+    wave = get_object_or_404(Wave, pk=wave_pk)
+    if wave.user != request.user:
+        raise PermissionDenied
+    
+    echo_pk = wave.echo.pk
+    wave.delete()
+    messages.success(request, 'Wave deleted successfully')  
 
-    # try:
-    #     echo = Echo.objects.get(pk=echo_pk)
-
-    # except Echo.DoesNotExist:
-    #     return HttpResponse('There is no echo with that key currently!')
-
-    # return render(request, 'waves/echo-waves-add.html', {'echo': echo})
-    return redirect ('index')
+    return redirect('echos:echo-detail', echo_pk=echo_pk)

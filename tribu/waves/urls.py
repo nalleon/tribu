@@ -5,6 +5,6 @@ app_name = 'waves'
 
 
 urlpatterns = [
-    path('<int:echo_pk>/waves/', views.echo_waves, name='echo-waves'),
-    # path('<post:post>/edit/', views.edit_post, name='edit-post'),
+    path('<int:wave_pk>/edit/', views.edit_wave, name='edit-wave'),
+    path('<int:wave_pk>/delete/', views.delete_wave, name='delete-wave'),
 ]

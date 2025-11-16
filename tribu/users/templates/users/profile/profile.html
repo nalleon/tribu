@@ -17,24 +17,23 @@
     {% endif %}
   </div>
 
-  {% if  profile.user.echos.all|length > 0 %}
-    {% for echo in profile.user.echos.all%}
-      {% if forloop.counter0 < 5 %}  
-        <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink'%}">
-          <p><a href="{% url 'users:profile' echo.user.username %}">{{ echo.user.username }}</a></p>
-          <p>{{ echo.created_at|timesince }}</p>
-          <p>{{ echo.content | truncatewords:20 }}</p>
-          <p>Read more <a href="{% url 'echos:echo-detail' echo.pk %}">here</a></p>
-        </div>        
-      {% endif %}
-    {% endfor %}
-    {% if profile.user.echos.all|length > 5 %}
-      <p><a href="{% url 'users:user-echos' profile.user.username %}">Show all echos</a></p>
+  {% for echo in profile.user.echos.all %}
+    {% if forloop.counter0 < 5 %}
+      <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink' %}">
+        <p><a href="{% url 'users:profile' echo.user.username %}">{{ echo.user.username }}</a></p>
+        <p>{{ echo.created_at|timesince }}</p>
+        <p>{{ echo.content|truncatewords:20 }}</p>
+        <p>Read more <a href="{% url 'echos:echo-detail' echo.pk %}">here</a></p>
+      </div>
     {% endif %}
-  {% else %}
-      <p>No echos yet</p>
+  {% empty %}
+    <p>No echos yet</p>
+  {% endfor %}
+
+  {% if profile.user.echos.count > 5 %}
+    <p><a href="{% url 'users:user-echos' profile.user.username %}">Show all echos</a></p>
   {% endif %}
-    
+
 {% endif %}
 
 {% endblock %}

@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, render, redirect
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseNotFound
 from .models import Profile
 from .forms import EditProfileForm
+from django.contrib import messages
 
 
 @login_required
@@ -18,22 +20,12 @@ def user_list(request):
 
 @login_required
 def user_detail(request, username):
-    try:
-        profile = Profile.objects.get(user__username=username)
-    except Profile.DoesNotExist:
-        return HttpResponseNotFound(
-            f"User with username '{username}' does not exist"
-        )    
+    profile = get_object_or_404(Profile, user__username=username)
     return render(request, 'users/profile/profile.html', {'profile': profile})
 
 @login_required
 def user_echos(request, username):
-    try:
-        profile = Profile.objects.get(user__username=username)
-    except Profile.DoesNotExist:
-        return HttpResponseNotFound(
-            f"User with username '{username}' does not exist"
-        )    
+    profile = get_object_or_404(Profile, user__username=username)
     return render(request, 'users/profile/profile-echos.html', {'profile': profile})
 
 @login_required
@@ -43,23 +35,18 @@ def my_user_detail(request):
 
 @login_required
 def edit_profile(request, username):
+    profile = get_object_or_404(Profile, user__username=username)
+    
+    if profile.user != request.user:
+        raise PermissionDenied
 
-    # if request.method == 'POST':
-    #     if (form := EditProfileForm(request.POST, instance=profile)).is_valid():
+    if request.method == 'POST':
+        if (form := EditProfileForm(request.POST, instance=profile)).is_valid():
+            profile = form.save(commit=False)
+            profile.save()
+            messages.success(request, 'Profile updated successfully')  
+        return redirect('users:me')
+    else:
+        form = EditProfileForm(instance=profile)
+    return render(request, 'echos/echo/edit.html', {'form': form})
 
-    #         profile.save(profile.user)
-    #         return redirect('profiles:profile-list')
-
-    # else:
-    #     form = EditProfileForm(instance=profile)
-
-    return redirect('index')
-
-@login_required
-def profile_view(request):
-    profile = request.user.profile
-    profiles = request.user.profiles.all()
-    return render(request, 'profile.html', {
-        'profile': profile,
-        'profiles': profiles
-    })

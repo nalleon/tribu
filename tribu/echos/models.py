@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-
+from django.urls import reverse
 
 class Echo(models.Model):
     content = models.TextField()
@@ -14,6 +14,9 @@ class Echo(models.Model):
 
     def __str__(self):
         return f'Pk: {self.pk}'
+    
+    def get_absolute_url(self):
+        return reverse('echos:echo-detail', kwargs={'echo_pk': self.pk})
     
     class Meta:
         ordering = ['-created_at']

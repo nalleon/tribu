@@ -11,7 +11,6 @@
       <p><a href="{% url 'echos:delete-echo' echo.pk %}">Delete echo</a></p>
     </div>
   {% endif %}
-
   {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -30,17 +29,13 @@
   <p class="crearButton">
     <a href="{% url 'echos:add-wave' echo.pk %}" class="textButton">Add wave</a>
   </p>
-  {% if echo.waves.all|length > 5 %}
-    <p><a href="{% url 'echos:echo-detail' echo.pk %}">View all waves</a></p>
-  {% endif %}
+
   {% for wave in echo.waves.all %}
-    {% if forloop.counter0 < 5 %}  
-      <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink'%}">
-        <p><a href="{% url 'users:profile' wave.user.username %}">{{ wave.user.username }}</a></p>
-        <p>{{ wave.created_at|timesince }}</p>
-        <p>{{ wave.content }}</p>
-      </div>
-      {% if request.user == wave.user %}
+    <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink'%}">
+      <p><a href="{% url 'users:profile' wave.user.username %}">{{ wave.user.username }}</a></p>
+      <p>{{ wave.created_at|timesince }}</p>
+      <p>{{ wave.content }}</p>
+    {% if request.user == wave.user %}
       <div> 
         <div class="edit-echo">
           <p><a href="{% url 'waves:edit-wave' wave.pk %}">Edit wave</a></p>
@@ -49,7 +44,6 @@
           <p><a href="{% url 'waves:delete-wave' wave.pk %}">Delete wave</a></p>
         </div>
       </div>
-      {% endif %}
     {% endif %}
     {% empty %}
       <p>No waves yet</p>
