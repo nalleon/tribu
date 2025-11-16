@@ -4,13 +4,13 @@
 {% include "header.html" %}
 
 <div class="formContainer">
-  <form method="post" novalidate>
+  <form method="post" novalidate enctype="multipart/form-data" >
     {% csrf_token %} 
     {{ form }}
     <div class="form-btn">
       <input type="submit" value="Add" />
       <span class="pill-form">
-        <p><a href="{% url 'users:profile' echo.pk %}">Cancel</a></p>
+        <p><a href="{% url 'users:me' %}">Cancel</a></p>
       </span>
     </div>
   </form>

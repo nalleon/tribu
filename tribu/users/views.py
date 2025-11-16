@@ -41,12 +41,12 @@ def edit_profile(request, username):
         raise PermissionDenied
 
     if request.method == 'POST':
-        if (form := EditProfileForm(request.POST, instance=profile)).is_valid():
+        if (form := EditProfileForm(request.POST,request.FILES, instance=profile)).is_valid():
             profile = form.save(commit=False)
             profile.save()
             messages.success(request, 'Profile updated successfully')  
         return redirect('users:me')
     else:
         form = EditProfileForm(instance=profile)
-    return render(request, 'echos/echo/edit.html', {'form': form})
+    return render(request, 'users/profile/edit.html', {'form': form})
 
