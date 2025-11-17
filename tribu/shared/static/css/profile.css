@@ -1,3 +1,23 @@
-body{
+.img-pfp{
+  width: 5rem;
+}
+
+.pfp-info{
+  background-color: white;
+  color: black;
+
+  width: 40rem;
+  margin: auto;
+
+  border-radius: 10px;
+
+  text-align: justify;
+  padding: 10px;
+}
+
+.info-row{
   background-color: red;
+  
+  text-align: center;
+  justify-content: space-around;
 }
