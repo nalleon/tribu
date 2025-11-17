@@ -22,7 +22,7 @@ def test_echo_list_page_requires_authentication(client, user):
 @pytest.mark.django_db
 def test_echo_list_page_contains_expected_echo_information(client, user):
     echos = baker.make_recipe('tests.echo', _quantity=10)
-    # Hack to fix {{ echo.user.profile.get_absolute_url }} in the template
+    # Add profile to each echo user
     for echo in echos:
         baker.make_recipe('tests.profile', user=echo.user)
 
@@ -40,6 +40,9 @@ def test_echo_list_page_contains_expected_echo_information(client, user):
 @pytest.mark.django_db
 def test_echo_list_page_contains_echos_in_expected_order(client, user):
     echos = baker.make_recipe('tests.echo', _quantity=10)
+    # Add profile to each echo user
+    for echo in echos:
+        baker.make_recipe('tests.profile', user=echo.user)
     echos = sorted(echos, key=lambda e: e.created_at, reverse=True)
 
     client.force_login(user)
@@ -57,6 +60,9 @@ def test_echo_list_page_contains_echos_in_expected_order(client, user):
 @pytest.mark.django_db
 def test_echo_list_page_contains_expected_number_of_echos(client, user):
     echos = baker.make_recipe('tests.echo', _quantity=7)
+    # Add profile to each echo user
+    for echo in echos:
+        baker.make_recipe('tests.profile', user=echo.user)
 
     client.force_login(user)
     response = client.get(conftest.ECHO_LIST_URL)
@@ -70,6 +76,9 @@ def test_echo_list_page_contains_expected_number_of_echos(client, user):
 @pytest.mark.django_db
 def test_echo_list_page_contains_total_number_of_echos_plural(client, user):
     echos = baker.make_recipe('tests.echo', _quantity=15)
+    # Add profile to each echo user
+    for echo in echos:
+        baker.make_recipe('tests.profile', user=echo.user)
 
     client.force_login(user)
     response = client.get(conftest.ECHO_LIST_URL)
@@ -81,6 +90,9 @@ def test_echo_list_page_contains_total_number_of_echos_plural(client, user):
 @pytest.mark.django_db
 def test_echo_list_page_contains_total_number_of_echos_singular(client, user):
     echos = baker.make_recipe('tests.echo', _quantity=1)
+    # Add profile to each echo user
+    for echo in echos:
+        baker.make_recipe('tests.profile', user=echo.user)
 
     client.force_login(user)
     response = client.get(conftest.ECHO_LIST_URL)
@@ -263,7 +275,10 @@ def test_echo_detail_page_shows_no_waves_message_when_no_waves(client, user, ech
 @pytest.mark.django_db
 def test_echo_detail_page_shows_up_to_limit_waves(client, user, echo):
     WAVE_LIMIT = 5
-    baker.make_recipe('tests.wave', echo=echo, _quantity=WAVE_LIMIT + 3)
+    waves = baker.make_recipe('tests.wave', echo=echo, _quantity=WAVE_LIMIT + 3)
+    # Add profile to each wave user
+    for wave in waves:
+        baker.make_recipe('tests.profile', user=wave.user)
 
     url = conftest.ECHO_DETAIL_URL.format(echo_pk=echo.pk)
     client.force_login(user)
@@ -278,7 +293,10 @@ def test_echo_detail_page_shows_up_to_limit_waves(client, user, echo):
 @pytest.mark.django_db
 def test_echo_detail_page_shows_view_all_waves_link_when_exceeding_limit(client, user, echo):
     WAVE_LIMIT = 5
-    baker.make_recipe('tests.wave', echo=echo, _quantity=WAVE_LIMIT + 2)
+    waves = baker.make_recipe('tests.wave', echo=echo, _quantity=WAVE_LIMIT + 2)
+    # Add profile to each wave user
+    for wave in waves:
+        baker.make_recipe('tests.profile', user=wave.user)
 
     url = conftest.ECHO_DETAIL_URL.format(echo_pk=echo.pk)
     client.force_login(user)
@@ -292,7 +310,10 @@ def test_echo_detail_page_shows_view_all_waves_link_when_exceeding_limit(client,
 @pytest.mark.django_db
 def test_echo_detail_page_does_not_show_view_all_waves_link_when_within_limit(client, user, echo):
     WAVE_LIMIT = 5
-    baker.make_recipe('tests.wave', echo=echo, _quantity=WAVE_LIMIT - 1)
+    waves = baker.make_recipe('tests.wave', echo=echo, _quantity=WAVE_LIMIT - 1)
+    # Add profile to each wave user
+    for wave in waves:
+        baker.make_recipe('tests.profile', user=wave.user)
 
     url = conftest.ECHO_DETAIL_URL.format(echo_pk=echo.pk)
     client.force_login(user)
@@ -306,6 +327,9 @@ def test_echo_detail_page_does_not_show_view_all_waves_link_when_within_limit(cl
 def test_echo_detail_page_shows_all_waves_when_within_limit(client, user, echo):
     WAVE_LIMIT = 5
     waves = baker.make_recipe('tests.wave', echo=echo, _quantity=WAVE_LIMIT - 1)
+    # Add profile to each wave user
+    for wave in waves:
+        baker.make_recipe('tests.profile', user=wave.user)
 
     url = conftest.ECHO_DETAIL_URL.format(echo_pk=echo.pk)
     client.force_login(user)
@@ -320,6 +344,9 @@ def test_echo_detail_page_shows_all_waves_when_within_limit(client, user, echo):
 @pytest.mark.django_db
 def test_echo_detail_page_shows_expected_info_about_related_waves(client, user, echo):
     waves = baker.make_recipe('tests.wave', echo=echo, _quantity=3)
+    # Add profile to each wave user
+    for wave in waves:
+        baker.make_recipe('tests.profile', user=wave.user)
 
     url = conftest.ECHO_DETAIL_URL.format(echo_pk=echo.pk)
     client.force_login(user)
@@ -459,7 +486,10 @@ def test_echo_waves_page_shows_no_waves_message_when_no_waves(client, user, echo
 
 @pytest.mark.django_db
 def test_echo_waves_page_shows_up_all_waves(client, user, echo):
-    baker.make_recipe('tests.wave', echo=echo, _quantity=8)
+    waves = baker.make_recipe('tests.wave', echo=echo, _quantity=8)
+    # Add profile to each wave user
+    for wave in waves:
+        baker.make_recipe('tests.profile', user=wave.user)
 
     url = conftest.ECHO_WAVES_URL.format(echo_pk=echo.pk)
     client.force_login(user)
@@ -473,7 +503,10 @@ def test_echo_waves_page_shows_up_all_waves(client, user, echo):
 
 @pytest.mark.django_db
 def test_echo_waves_page_does_not_show_view_all_waves_link(client, user, echo):
-    baker.make_recipe('tests.wave', echo=echo, _quantity=3)
+    waves = baker.make_recipe('tests.wave', echo=echo, _quantity=3)
+    # Add profile to each wave user
+    for wave in waves:
+        baker.make_recipe('tests.profile', user=wave.user)
 
     url = conftest.ECHO_WAVES_URL.format(echo_pk=echo.pk)
     client.force_login(user)
