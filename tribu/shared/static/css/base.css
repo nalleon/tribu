@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(77, 103, 175);
+  background-color: rgb(53, 59, 56);
   color: white;
   font-family: Georgia, "Times New Roman", Times, serif;
   display: flex;
@@ -9,18 +9,43 @@ body {
   text-align: center;
 }
 
-.box {
-  background-color: aliceblue;
-  width: 50rem;
-  height: fit-content;
+.echoContainer {
+  background-color: rgb(38, 38, 39);
+  width: 60rem;
+  height: 10rem;
   border-radius: 10px;
-  color: black;
+  color: aliceblue;
   text-align: justify;
+  text-overflow: clip;
   padding-top: 1rem;
   padding-left: 1rem;
   margin-top: 1rem;
   box-shadow: 3px 3px 0px rgb(68, 67, 67);
 
+}
+
+.echoContainer p {
+  color: aliceblue;
+  text-align: justify;
+  word-wrap: break-word
+
+}
+
+.time {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 1rem;
+}
+
+.time p {
+  color: rgb(192, 192, 192);
+}
+
+.separator{
+  border-top: 1px solid #333;
+  width: 100%;
+  height: 0.2px;
+  display: block;
 }
 
 .buttons {
@@ -30,8 +55,8 @@ body {
   justify-items: end;
 }
 
-.pill p {
-  background: linear-gradient(#3f8044, #90c77f);
+.pill-username p {
+  background: linear-gradient(#493f80, #7f8ac7);
   border-radius: 20px;
   width: fit-content;
   font-size: small;
@@ -94,11 +119,11 @@ img {
   align-items: center;
 }
 
-.img-pfp{
+.img-pfp {
   width: 5rem;
 }
 
-.pfp-info{
+.pfp-info {
   border: solid 1px white;
   border-radius: 10px;
 
@@ -109,36 +134,40 @@ img {
   color: black;
 }
 
-.grey-message{
+.grey-message {
   color: grey;
 }
 
-.messages{
+.messages {
   list-style-type: none;
 }
 
-.success, .error, .debug, .warning, .info{
+.success,
+.error,
+.debug,
+.warning,
+.info {
   font-variant: small-caps;
   text-align: center;
 }
 
-.custom-button{
+.custom-button {
   border: solid 1px white;
   border-radius: 10px;
 
-  background-color: white;  
+  background-color: white;
   padding: 10px;
 }
 
-.info-row{
+.info-row {
   display: inline; /*No entiendo por que no funciona*/
 }
 
-.echoContainer{
+.echoContainer {
   width: 20rem; /*No entiendo por que lo aplica a todo incluso a botones*/
   color: black;
 }
 
-.textButton{
+.textButton {
   color: black;
 }
