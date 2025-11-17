@@ -4,30 +4,33 @@
 {% include "header.html" %}
 
   {% if request.user == echo.user %}
-    <div class="edit-echo">
-      <p><a href="{% url 'echos:edit-echo' echo.pk %}">Edit echo</a></p>
-    </div>
-    <div class="delete-echo">
-      <p><a href="{% url 'echos:delete-echo' echo.pk %}">Delete echo</a></p>
-    </div>
+    <p class="custom-button">
+      <a href="{% url 'echos:edit-echo' echo.pk %}" class="textButton">Edit echo</a>
+    </p>
+    <p class="custom-button">
+      <a href="{% url 'echos:delete-echo' echo.pk %}" class="textButton">Delete echo</a>
+    </p>
   {% endif %}
 
   {% if messages %}
     <ul class="messages">
         {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
                 {{ message }}
             </li>
         {% endfor %}
     </ul>
   {% endif %}
+
   <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink'%}">
-    <p><a href="{% url 'users:profile' echo.user.username %}">{{ echo.user.username }}</a></p>
-    <p>{{ echo.created_at|timesince }}</p>
+    <div class="info-row">
+      <p><a href="{% url 'users:profile' echo.user.username %}">{{ echo.user.username }}</a></p>
+      <p>{{ echo.created_at|timesince }}</p>
+    </div>
     <p>{{ echo.content }}</p>
   </div>
 
-  <p class="crearButton">
+  <p class="custom-button">
     <a href="{% url 'echos:add-wave' echo.pk %}" class="textButton">Add wave</a>
   </p>
   {% if echo.waves.all|length > 5 %}

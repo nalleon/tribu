@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(18, 19, 19);
+  background-color: rgb(77, 103, 175);
   color: white;
   font-family: Georgia, "Times New Roman", Times, serif;
   display: flex;
@@ -55,7 +55,7 @@ a {
   color: white;
 }
 
-.pill-create p {
+.pillte p {
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   width: 2rem;
@@ -98,6 +98,21 @@ img {
   width: 5rem;
 }
 
+.pfp-info{
+  border: solid 1px white;
+  border-radius: 10px;
+
+  width: 30rem;
+  height: fit-content;
+
+  background-color: white;
+  color: black;
+}
+
+.grey-message{
+  color: grey;
+}
+
 .messages{
   list-style-type: none;
 }
@@ -105,4 +120,25 @@ img {
 .success, .error, .debug, .warning, .info{
   font-variant: small-caps;
   text-align: center;
+}
+
+.custom-button{
+  border: solid 1px white;
+  border-radius: 10px;
+
+  background-color: white;  
+  padding: 10px;
+}
+
+.info-row{
+  display: inline; /*No entiendo por que no funciona*/
+}
+
+.echoContainer{
+  width: 20rem; /*No entiendo por que lo aplica a todo incluso a botones*/
+  color: black;
+}
+
+.textButton{
+  color: black;
 }

@@ -14,10 +14,24 @@
 
   <div class="user">
     <div class="img-post">
-      <img class="img-post" src="{{ profile.avatar.url }}"/>
+      <img class="img-pfp" src="{{ profile.avatar.url }}"/>
     </div>
-    <p>{{profile.user.first_name}} {{profile.user.last_name}} {{profile.user.username}} {{profile.user.email}}</p>
-    <p>{{profile.bio}}</p>
+    <p>
+      {{profile.user.username}}
+    </p>
+    <div class="pfp-info">
+      <p>
+        {{profile.user.first_name}} {{profile.user.last_name}} {{profile.user.email}}
+      </p>
+      {% if profile.bio %}
+        <p>
+          {{profile.bio}}
+        </p>
+      {% endif %}
+        <p class="grey-message">
+          <i>No bio yet!</i>
+        </p>
+    </div>
     {% if request.user == profile.user %}
       <div class="edit-profile">
         <p><a href="{% url 'users:user-edit' profile.user.username %}">Editar</a></p>
@@ -35,7 +49,7 @@
       </div>
     {% endif %}
   {% empty %}
-    <p>No echos yet</p>
+    <p class="grey-message"><i>No echos yet</i></p>
   {% endfor %}
 
   {% if profile.user.echos.count > 5 %}

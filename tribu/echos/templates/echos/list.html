@@ -12,7 +12,7 @@
     </ul>
   {% endif %}
 
-  <p class="crearButton">
+  <p class="custom-button">
     <a href="{% url 'echos:add-echo' %}" class="textButton">Add echo</a>
   </p>
 
@@ -33,7 +33,7 @@
     {% endfor %}
   {% else %}
     <div>
-      <p>No echos yet.</p>
+      <p class="grey-message"><i>No echos yet.</i></p>
     </div>
   {%endif%}
 
