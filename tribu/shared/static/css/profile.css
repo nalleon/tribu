@@ -1,3 +1,7 @@
+.img-container{
+  text-align: center;
+}
+
 .img-pfp{
   width: 5rem;
 }
@@ -11,13 +15,104 @@
 
   border-radius: 10px;
 
-  text-align: justify;
   padding: 10px;
 }
 
 .info-row{
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.bio{
+  text-align: justify;
+}
+
+/*Echos del perfil*/
+
+.echo-list{
   background-color: red;
-  
-  text-align: center;
-  justify-content: space-around;
+}
+
+.echoContainer {
+  background-color: rgb(38, 38, 39);
+  width: 20rem;
+  height: 15rem;
+  border-radius: 10px;
+  color: aliceblue;
+  text-align: justify;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  margin-top: 1rem;
+  box-shadow: 3px 3px 0px rgb(68, 67, 67);
+  position: relative;
+}
+
+.echoContainer p {
+  color: aliceblue;
+  text-align: justify;
+  word-wrap: break-word;
+}
+
+.time {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 1rem;
+  position: absolute;
+}
+
+.time p {
+  color: rgb(163, 165, 164);
+}
+
+.separator {
+  border-top: 0.1px solid #333;
+  width: 100%;
+  height: 0.2px;
+  margin: 0;
+  display: block;
+  margin-bottom: 0;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: end;
+  justify-items: end;
+}
+
+.pill-username p {
+  background: linear-gradient(#493f80, #7f8ac7);
+  border-radius: 20px;
+  width: fit-content;
+  font-size: small;
+  font-style: italic;
+  padding: 5px;
+  margin: 10px;
+}
+
+.title {
+  font-variant: small-caps;
+  width: 49rem;
+  border-bottom: 1px solid gray;
+}
+
+.content {
+  color: gray;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.pilltext p {
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  width: 2rem;
+  height: 2rem;
+  font-size: x-large;
+  font-style: bold;
+  margin: 0 auto;
+  color: black;
 }

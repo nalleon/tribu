@@ -20,17 +20,17 @@
   <div class="user">
     <div class="img-container">
       <img class="img-pfp" src="{{ profile.avatar.url }}"/>
+      <p>
+        {{profile.user.username}}
+      </p>
     </div>
-    <p>
-      {{profile.user.username}}
-    </p>
     <div class="pfp-info">
       <div class="info-row">
         <span><b>{{profile.user.first_name}} {{profile.user.last_name}}</b></span>
-        <span class="bio">{{profile.user.email}}</span>
+        <span>{{profile.user.email}}</span>
       </div>
       {% if profile.bio %}
-        <p>
+        <p class="bio">
           {{profile.bio}}
         </p>
       {% else %}
@@ -46,18 +46,24 @@
     {% endif %}
   </div>
 
-  {% for echo in profile.user.echos.all %}
-    {% if forloop.counter0 < 5 %}
-      <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink' %}">
-        <p><a href="{% url 'users:profile' echo.user.username %}">{{ echo.user.username }}</a></p>
-        <p>{{ echo.created_at|timesince }}</p>
-        <p>{{ echo.content|truncatewords:20 }}</p>
-        <p>Read more <a href="{% url 'echos:echo-detail' echo.pk %}">here</a></p>
-      </div>
-    {% endif %}
-  {% empty %}
-    <p class="grey-message"><i>No echos yet</i></p>
-  {% endfor %}
+  <div class="echo-list">
+    {% for echo in profile.user.echos.all %}
+      {% if forloop.counter0 < 5 %}
+        <div class="echoContainer">
+          <span class="pill-username"><p><a href="{% url 'users:profile' echo.user.username %}">@{{ echo.user.username }}</a></p></span>
+          <p>{{ echo.content | truncatewords:20 }}</p>
+          <p><a href="{% url 'echos:echo-detail' echo.pk %}">Read more here</a></p>
+          <span class="separator"><span>
+          <div class="time">
+              <p>{{ echo.created_at|timesince }}</p>
+            </div>
+          </div>
+        <div>
+      {% endif %}
+    {% empty %}
+      <p class="grey-message"><i>No echos yet</i></p>
+    {% endfor %}
+  </div>
 
   {% if profile.user.echos.count > 5 %}
     <p><a href="{% url 'users:user-echos' profile.user.username %}">Show all echos</a></p>
