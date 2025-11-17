@@ -18,7 +18,7 @@
   {% endif %}
 
   <div class="user">
-    <div class="img-post">
+    <div class="img-container">
       <img class="img-pfp" src="{{ profile.avatar.url }}"/>
     </div>
     <p>
@@ -26,17 +26,18 @@
     </p>
     <div class="pfp-info">
       <div class="info-row">
-        <span>{{profile.user.first_name}} {{profile.user.last_name}}</span>
+        <span><b>{{profile.user.first_name}} {{profile.user.last_name}}</b></span>
         <span class="bio">{{profile.user.email}}</span>
       </div>
       {% if profile.bio %}
         <p>
           {{profile.bio}}
         </p>
-      {% endif %}
+      {% else %}
         <p class="grey-message">
           <i>No bio yet!</i>
         </p>
+      {% endif %}
     </div>
     {% if request.user == profile.user %}
       <div class="edit-profile">
