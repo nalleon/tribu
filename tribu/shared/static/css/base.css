@@ -170,9 +170,15 @@ img {
 }
 
 .info-row {
-  display: inline; /*No entiendo por que no funciona*/
+  display: inline;
+  justify-content: space-around;
+  align-content: space-around;
 }
 
+
+.bio{
+  text-align: justify;
+}
 
 .textButton {
   color: black;

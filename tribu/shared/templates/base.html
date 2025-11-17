@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% if title %}{{ title }} | {% endif %} Tribu</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extrahead %}{% endblock %}
   </head>
 
   <body>
