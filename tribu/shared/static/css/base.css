@@ -28,7 +28,6 @@ body {
   color: aliceblue;
   text-align: justify;
   word-wrap: break-word
-
 }
 
 .time {
@@ -160,12 +159,18 @@ img {
 }
 
 .info-row {
-  display: inline; /*No entiendo por que no funciona*/
+  display: inline;
+  justify-content: space-around;
+  align-content: space-around;
 }
 
 .echoContainer {
   width: 20rem; /*No entiendo por que lo aplica a todo incluso a botones*/
   color: black;
+}
+
+.bio{
+  text-align: justify;
 }
 
 .textButton {

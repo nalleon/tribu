@@ -6,6 +6,7 @@
     <title>{% if title %}{{ title }} | {% endif %} Tribu</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extrahead %}{% endblock %}
   </head>
 
   <body>

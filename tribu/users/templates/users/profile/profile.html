@@ -1,5 +1,10 @@
 {% extends "base.html" %} 
-{% load static %} 
+{% load static %}
+
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
 {% block content %}
 {% include "header.html" %}
   {% if messages %}
@@ -20,9 +25,10 @@
       {{profile.user.username}}
     </p>
     <div class="pfp-info">
-      <p>
-        {{profile.user.first_name}} {{profile.user.last_name}} {{profile.user.email}}
-      </p>
+      <div class="info-row">
+        <span>{{profile.user.first_name}} {{profile.user.last_name}}</span>
+        <span class="bio">{{profile.user.email}}</span>
+      </div>
       {% if profile.bio %}
         <p>
           {{profile.bio}}
