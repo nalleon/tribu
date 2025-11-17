@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(53, 59, 56);
+  background-color: rgb(49, 49, 49);
   color: white;
   font-family: Georgia, "Times New Roman", Times, serif;
   display: flex;
@@ -9,43 +9,53 @@ body {
   text-align: center;
 }
 
+.list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
 .echoContainer {
   background-color: rgb(38, 38, 39);
-  width: 60rem;
-  height: 10rem;
+  width: 20rem;
+  height: 15rem;
   border-radius: 10px;
   color: aliceblue;
   text-align: justify;
-  text-overflow: clip;
   padding-top: 1rem;
   padding-left: 1rem;
   margin-top: 1rem;
   box-shadow: 3px 3px 0px rgb(68, 67, 67);
-
+  position: relative;
 }
 
 .echoContainer p {
   color: aliceblue;
   text-align: justify;
-  word-wrap: break-word
-
+  word-wrap: break-word;
 }
 
 .time {
   display: flex;
   flex-direction: row-reverse;
   margin: 1rem;
+  position: absolute;
 }
 
 .time p {
-  color: rgb(192, 192, 192);
+  color: rgb(163, 165, 164);
 }
 
-.separator{
-  border-top: 1px solid #333;
+.separator {
+  border-top: 0.1px solid #333;
   width: 100%;
   height: 0.2px;
+  margin: 0;
   display: block;
+  margin-bottom: 0;
 }
 
 .buttons {
@@ -80,7 +90,7 @@ a {
   color: white;
 }
 
-.pillte p {
+.pilltext p {
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   width: 2rem;
@@ -163,11 +173,9 @@ img {
   display: inline; /*No entiendo por que no funciona*/
 }
 
-.echoContainer {
-  width: 20rem; /*No entiendo por que lo aplica a todo incluso a botones*/
-  color: black;
-}
 
 .textButton {
   color: black;
 }
+
+

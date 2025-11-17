@@ -22,23 +22,23 @@
     {% else %}
       <p>Tribu has posted {{echos|length}} echo so far!</p>
     {% endif %}
-    
-    {% for echo in echos %}
+    <div class="list">
+      {% for echo in echos %}
       <div class="echoContainer">
-            <span class="pill-username"><p><a href="{% url 'users:profile' echo.user.username %}">@{{ echo.user.username }}</a></p></span>
-            <p>{{ echo.content | truncatewords:20 }}</p>
-            <p>Read more <a href="{% url 'echos:echo-detail' echo.pk %}">here</a></p>
-            <div class="time">
-              <span class="separator"><span>
-              <p>{{ echo.created_at|timesince }}</p>
-            </div>
+        <span class="pill-username"><p><a href="{% url 'users:profile' echo.user.username %}">@{{ echo.user.username }}</a></p></span>
+        <p>{{ echo.content | truncatewords:20 }}</p>
+        <p><a href="{% url 'echos:echo-detail' echo.pk %}">Read more here</a></p>
+        <span class="separator"><span>
+        <div class="time">
+            <p>{{ echo.created_at|timesince }}</p>
           </div>
-    {% endfor %}
-  {% else %}
+        </div>
+        {% endfor %}
     <div>
-      <p class="grey-message"><i>No echos yet.</i></p>
+  {% else %}
+    <p class="grey-message"><i>No echos yet.</i></p>
     </div>
-  {%endif%}
-
+    {%endif%}
+  </div>
   
 {% endblock %}
