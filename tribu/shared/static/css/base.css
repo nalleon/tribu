@@ -10,11 +10,25 @@ body {
   margin: 0;
 }
 
-
 .header{
   background-color: #212125;
-  padding-top: 60px;
+  padding: 1.5rem;
   text-align: center;
+}
+
+.row{
+  display: flex;
+}
+
+.main-header{
+  text-align: left;
+}
+.title a {
+  text-decoration: none;
+}
+
+.auth{
+  flex-direction: row-reverse;
 }
 
 .grey-message {
