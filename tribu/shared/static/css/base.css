@@ -9,10 +9,6 @@ body {
   text-align: center;
 }
 
-img {
-  width: 400px;
-}
-
 .index {
   display: flex;
   flex-direction: column;
@@ -21,27 +17,6 @@ img {
   text-align: center;
 }
 
-.img-post {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.img-pfp {
-  width: 5rem;
-}
-
-.pfp-info {
-  border: solid 1px white;
-  border-radius: 10px;
-
-  width: 30rem;
-  height: fit-content;
-
-  background-color: white;
-  color: black;
-}
 
 .grey-message {
   color: grey;
@@ -73,14 +48,3 @@ img {
   justify-content: space-around;
   align-content: space-around;
 }
-
-
-.bio{
-  text-align: justify;
-}
-
-.textButton {
-  color: black;
-}
-
-
