@@ -1,18 +1,21 @@
 {% extends "base.html" %} 
 {% load static %} 
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock %}
 {% block content %}
-{% include "header.html" %}
-
 <div class="formContainer">
   <form method="post" novalidate>
-    {% csrf_token %} 
+    {% csrf_token %}
     {{ form }}
     <div class="form-btn">
       <input type="submit" value="Add" />
+
       <span class="pill-form">
         <p><a href="{% url 'echos:echo-list' %}">Cancel</a></p>
       </span>
     </div>
   </form>
 </div>
+
 {% endblock %}
