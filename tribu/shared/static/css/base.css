@@ -10,25 +10,33 @@ body {
   margin: 0;
 }
 
-.header{
+.header {
   background-color: #212125;
   padding: 1.5rem;
   text-align: center;
 }
 
-.row{
+.row {
   display: flex;
 }
 
-.main-header{
+.main-header {
   text-align: left;
+  font-size: 30px;
 }
-.title a {
+
+.title {
+  font-variant: small-caps;
+  width: 49rem;
+}
+
+.title a:link {
   text-decoration: none;
 }
 
-.auth{
+.auth {
   flex-direction: row-reverse;
+  text-align: end;
 }
 
 .grey-message {
@@ -61,4 +69,3 @@ body {
   justify-content: space-around;
   align-content: space-around;
 }
-

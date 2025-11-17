@@ -17,14 +17,24 @@
   padding-top: 1rem;
   padding-left: 1rem;
   margin-top: 1rem;
-  box-shadow: 3px 3px 0px rgb(68, 67, 67);
+  border: 1px rgb(68, 67, 67) solid;
   position: relative;
 }
 
 .echoContainer p {
   color: aliceblue;
   text-align: justify;
+}
+
+.content {
   word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.readmore{
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 5px;
 }
 
 .time {
@@ -36,15 +46,11 @@
 
 .time p {
   color: rgb(163, 165, 164);
+  margin: 0;
 }
 
 .separator {
-  border-top: 0.1px solid #333;
-  width: 100%;
-  height: 0.2px;
-  margin: 0;
-  display: block;
-  margin-bottom: 0;
+  border-top: 3px solid #bbb;
 }
 
 .buttons {
@@ -64,22 +70,12 @@
   margin: 10px;
 }
 
-.title {
-  font-variant: small-caps;
-  width: 49rem;
-  border-bottom: 1px solid gray;
-}
-
-.content {
-  color: gray;
-}
-
 a {
   text-decoration: none;
   color: white;
 }
 
-.pilltext p {
+.pill p {
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   width: 2rem;

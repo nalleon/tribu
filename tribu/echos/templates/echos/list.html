@@ -29,9 +29,13 @@
       {% for echo in echos %}
       <div class="echoContainer">
         <span class="pill-username"><p><a href="{% url 'users:profile' echo.user.username %}">@{{ echo.user.username }}</a></p></span>
-        <p>{{ echo.content | truncatewords:20 }}</p>
-        <p><a href="{% url 'echos:echo-detail' echo.pk %}">Read more here</a></p>
-        <span class="separator"><span>
+        <div class="content">
+          <p>{{ echo.content | truncatewords:20 }}</p>
+        </div>
+        <div class="readmore">
+          <p><a href="{% url 'echos:echo-detail' echo.pk %}">View more</a></p>
+        </div>
+        <hr class="separator">
         <div class="time">
             <p>{{ echo.created_at|timesince }}</p>
           </div>
