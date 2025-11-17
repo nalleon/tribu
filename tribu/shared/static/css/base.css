@@ -1,42 +1,49 @@
 body {
-  background-color: rgb(49, 49, 49);
-  color: white;
+  background-color: #121212;
+  color: #f8f9f4;
   font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 0;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0;
 }
 
 .header {
   background-color: #212125;
   padding: 1.5rem;
-  text-align: center;
 }
 
 .row {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.main-header {
-  text-align: left;
-  font-size: 30px;
-}
-
-.title {
+.main-header .title {
+  font-size: 3rem;
+  margin: 0;
   font-variant: small-caps;
-  width: 49rem;
 }
 
-.title a:link {
+.title a {
   text-decoration: none;
+  color: white;
 }
 
 .auth {
-  flex-direction: row-reverse;
-  text-align: end;
+  font-size: 1rem;
+  text-align: right;
 }
+
+.auth a {
+  color: white;
+  text-decoration: none;
+}
+
 
 .grey-message {
   color: grey;
@@ -55,13 +62,6 @@ body {
   text-align: center;
 }
 
-.custom-button {
-  border: solid 1px white;
-  border-radius: 10px;
-
-  background-color: white;
-  padding: 10px;
-}
 
 .info-row {
   display: inline;

@@ -8,17 +8,18 @@
 }
 
 .echoContainer {
-  background-color: rgb(38, 38, 39);
+  background-color: #212125;
   width: 20rem;
   height: 15rem;
   border-radius: 10px;
   color: aliceblue;
-  text-align: justify;
-  padding-top: 1rem;
-  padding-left: 1rem;
+  padding: 1rem;
   margin-top: 1rem;
   border: 1px rgb(68, 67, 67) solid;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .echoContainer p {
@@ -26,31 +27,63 @@
   text-align: justify;
 }
 
-.content {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+.readmore {
+  position: absolute;
+  bottom: 3.2rem;
+  right: 1rem;
+  text-align: right;
 }
 
-.readmore{
-  display: flex;
-  flex-direction: row-reverse;
-  margin: 5px;
+.readmore a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #72a99f;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.readmore a ion-icon {
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+
+.readmore a:hover {
+  color: #3a5dc6;
+}
+
+.readmore a:hover ion-icon {
+  transform: translateX(4px);
+}
+
+.content {
+  flex-grow: 1;
+  word-wrap: break-word;
+}
+
+.meta {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 1rem;
+  right: 1rem;
+}
+
+.separator {
+  margin-top: 0.8rem;
+  border-top: 2px solid #555;
+  margin-bottom: 0.4rem;
 }
 
 .time {
   display: flex;
   flex-direction: row-reverse;
-  margin: 1rem;
-  position: absolute;
 }
-
 .time p {
   color: rgb(163, 165, 164);
   margin: 0;
-}
-
-.separator {
-  border-top: 3px solid #bbb;
+  font-size: 0.9rem;
 }
 
 .buttons {
@@ -60,14 +93,38 @@
   justify-items: end;
 }
 
+.pill-username {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .pill-username p {
-  background: linear-gradient(#493f80, #7f8ac7);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #72a99f;
+  padding: 6px 14px;
   border-radius: 20px;
-  width: fit-content;
-  font-size: small;
-  font-style: italic;
-  padding: 5px;
-  margin: 10px;
+  margin: 0 0 0.5rem 0;
+  transition: background-color 0.25s ease;
+}
+
+.pill-username a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #f8f9f4;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.pill-username a ion-icon {
+  font-size: 1rem;
+}
+
+.pill-username p:hover {
+  background-color: #3a5dc6;
 }
 
 a {
@@ -86,11 +143,49 @@ a {
   color: black;
 }
 
-.pill-create p a {
-  color: rgb(0, 0, 0);
-}
-.create {
+.button-wrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  height: 8rem;
+}
+
+.custom-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #72a99f;
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: 1px solid #72a99f;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.custom-button a {
+  color: #f8f9f4;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.custom-button ion-icon {
+  font-size: 1.2rem;
+  color: #f8f9f4;
+}
+
+.custom-button:hover {
+  background-color: #3a5dc6;
+  border-color: #3c61ce;
+}
+
+.echo-info {
+  color: #72a99f;
+  font-variant: small-caps;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
 }

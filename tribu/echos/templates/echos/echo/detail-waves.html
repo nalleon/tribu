@@ -1,52 +1,142 @@
 {% extends "base.html" %} 
 {% load static %} 
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock %}
 {% block content %}
-{% include "header.html" %}
+{% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+              {{ message }}
+          </li>
+      {% endfor %}
+  </ul>
+{% endif %}
 
-  {% if request.user == echo.user %}
-    <div class="edit-echo">
-      <p><a href="{% url 'echos:edit-echo' echo.pk %}">Edit echo</a></p>
+
+<div class="echoContainer">
+
+  <div class="row-detail">
+
+    <div class="user">
+      <span class="pill-username">
+        <p>
+          <a href="{% url 'users:profile' echo.user.username %}">
+            {{ echo.user.username }}
+            <ion-icon name="person-outline"></ion-icon>
+          </a>
+        </p>
+      </span>
     </div>
-    <div class="delete-echo">
-      <p><a href="{% url 'echos:delete-echo' echo.pk %}">Delete echo</a></p>
+
+    <div class="other-options">
+      {% if request.user == echo.user %}
+        <span class="pill-option pill-edit">
+          <p>
+            <a href="{% url 'echos:edit-echo' echo.pk %}">
+              Edit echo
+              <ion-icon name="create-outline"></ion-icon>
+            </a>
+          </p>
+        </span>
+
+        <span class="pill-option pill-delete">
+          <p>
+            <a href="{% url 'echos:delete-echo' echo.pk %}">
+              Delete echo
+              <ion-icon name="trash-outline"></ion-icon>
+            </a>
+          </p>
+        </span>
+      {% endif %}
     </div>
-  {% endif %}
-  {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                {{ message }}
-            </li>
-        {% endfor %}
-    </ul>
-  {% endif %}
-  <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink'%}">
-    <p><a href="{% url 'users:profile' echo.user.username %}">{{ echo.user.username }}</a></p>
-    <p>{{ echo.created_at|timesince }}</p>
+
+  </div>
+
+  <div class="content">
     <p>{{ echo.content }}</p>
   </div>
 
-  <p class="crearButton">
-    <a href="{% url 'echos:add-wave' echo.pk %}" class="textButton">Add wave</a>
-  </p>
+  <div class="meta">
+    <hr class="separator">
+    <div class="time">
+      <p>{{ echo.created_at|timesince }}</p>
+    </div>
+  </div>
 
-  {% for wave in echo.waves.all %}
-    <div class="echoContainer" style="background-color: {% cycle 'LightBlue' 'LightPink'%}">
-      <p><a href="{% url 'users:profile' wave.user.username %}">{{ wave.user.username }}</a></p>
+</div>
+
+
+
+<div class="waves-row">
+  <div class="waves-title">
+    <p class="waves-label">Waves</p>
+  </div>
+
+  <div class="waves-create">
+    <span class="custom-button">
+      <a href="{% url 'echos:add-wave' echo.pk %}" class="textButton">Add wave</a>
+      <ion-icon name="chatbox-outline"></ion-icon>
+    </span>
+  </div>
+</div>
+
+
+{% for wave in echo.waves.all %}
+<div class="echoContainer">
+
+  <div class="row-detail">
+
+    <div class="user">
+      <span class="pill-username">
+        <p>
+          <a href="{% url 'users:profile' wave.user.username %}">
+            {{ wave.user.username }}
+            <ion-icon name="person-outline"></ion-icon>
+          </a>
+        </p>
+      </span>
+    </div>
+
+    <div class="other-options">
+      {% if request.user == wave.user %}
+        <span class="pill-option pill-edit">
+          <p>
+            <a href="{% url 'waves:edit-wave' wave.pk %}">
+              Edit wave
+              <ion-icon name="create-outline"></ion-icon>
+            </a>
+          </p>
+        </span>
+
+        <span class="pill-option pill-delete">
+          <p>
+            <a href="{% url 'waves:delete-wave' wave.pk %}">
+              Delete wave
+              <ion-icon name="trash-outline"></ion-icon>
+            </a>
+          </p>
+        </span>
+      {% endif %}
+    </div>
+
+  </div>
+
+  <div class="content">
+    <p>{{ wave.content }}</p>
+  </div>
+
+  <div class="meta">
+    <hr class="separator">
+    <div class="time">
       <p>{{ wave.created_at|timesince }}</p>
-      <p>{{ wave.content }}</p>
-    {% if request.user == wave.user %}
-      <div> 
-        <div class="edit-echo">
-          <p><a href="{% url 'waves:edit-wave' wave.pk %}">Edit wave</a></p>
-        </div>
-        <div class="delete-echo">
-          <p><a href="{% url 'waves:delete-wave' wave.pk %}">Delete wave</a></p>
-        </div>
-      </div>
-    {% endif %}
-    {% empty %}
-      <p>No waves yet</p>
-    {% endfor %}
+    </div>
+  </div>
+
+</div>
+{% empty %}
+  <p>No waves yet</p>
+{% endfor %}
 
 {% endblock %}
