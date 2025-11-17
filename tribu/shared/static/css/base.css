@@ -12,6 +12,7 @@ body {
   justify-content: center;
 }
 
+/* Header general */
 .header {
   background-color: #212125;
   padding: 1.5rem;
@@ -23,6 +24,7 @@ body {
   align-items: center;
 }
 
+/* Title */
 .main-header .title {
   font-size: 3rem;
   margin: 0;
@@ -30,18 +32,67 @@ body {
 }
 
 .title a {
-  text-decoration: none;
-  color: white;
-}
-
-.auth {
-  font-size: 1rem;
-  text-align: right;
-}
-
-.auth a {
   color: white;
   text-decoration: none;
+}
+
+/* AUTH SECTION NUEVA */
+.auth-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.auth-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: #F8F9F4;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #3A5DC6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-fallback {
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.logout-btn {
+  display: inline-flex;
+  padding: 8px 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 0.25s ease;
+}
+
+.logout-btn ion-icon {
+  font-size: 1.3rem;
+  color: #F8F9F4;
+}
+
+.logout-btn:hover {
+  background-color: #3A5DC6;
 }
 
 
