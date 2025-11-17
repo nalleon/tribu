@@ -1,5 +1,8 @@
 {% extends "base.html" %} 
 {% load static %} 
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock %}
 {% block content %}
 {% include "header.html" %}
   {% if messages %}
