@@ -2,10 +2,10 @@
 {% load static %} 
 {% block content %}
 <div class="index">
-  <div class="img-container">
-    <img src="../static/images/image.jpg" alt="WIP" />
+  <div class="img-container" data-title="Echoes" data-author="Pink Floyd">
+    <img class="cover" src="../static/images/echoes_cover.jpeg" alt="Echoes Cover" />
   </div>
 
-  <h3><a href="{% url 'echos:echo-list' %}">Go to Echos</a></h3>
+  <h3 class="links-container"><a class="goto-echos" href="{% url 'echos:echo-list' %}">Go to Echos</a></h3>
 </div>
 {% endblock %}

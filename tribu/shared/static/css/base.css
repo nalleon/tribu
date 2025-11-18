@@ -119,3 +119,25 @@ body {
   justify-content: space-around;
   align-content: space-around;
 }
+
+/*Links*/
+.img-container{
+  margin-top: 20px;
+  border: 3px rgb(68, 67, 67) solid;
+  border-radius: 15px;
+}
+
+.cover{
+  width: 400px;
+  border-radius: 12px;
+}
+
+.goto-echos{
+  color: #F8F9F4;
+  text-decoration: none;
+}
+
+.links-container{
+  display: flex;
+  justify-content: center;
+}
