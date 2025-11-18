@@ -12,7 +12,6 @@ body {
   justify-content: center;
 }
 
-/* Header general */
 .header {
   background-color: #212125;
   padding: 1.5rem;
@@ -24,7 +23,6 @@ body {
   align-items: center;
 }
 
-/* Title */
 .main-header .title {
   font-size: 3rem;
   margin: 0;
@@ -36,19 +34,20 @@ body {
   text-decoration: none;
 }
 
-/* AUTH SECTION NUEVA */
 .auth-container {
   display: flex;
   align-items: center;
   gap: 1rem;
+  border-radius: 12px;
 }
 
 .auth-user {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.8rem;
   text-decoration: none;
-  color: #F8F9F4;
+  color: #f8f9f4;
+  border-radius: 12px;
 }
 
 .username {
@@ -60,7 +59,7 @@ body {
   height: 34px;
   border-radius: 50%;
   overflow: hidden;
-  background: #3A5DC6;
+  background: #3a5dc6;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,13 +87,16 @@ body {
 
 .logout-btn ion-icon {
   font-size: 1.3rem;
-  color: #F8F9F4;
+  color: #f8f9f4;
 }
 
 .logout-btn:hover {
-  background-color: #3A5DC6;
+  background-color: #3a5dc6;
 }
 
+.auth-user:hover {
+  background-color: #3a5dc6;
+}
 
 .grey-message {
   color: grey;
@@ -113,7 +115,6 @@ body {
   text-align: center;
 }
 
-
 .info-row {
   display: inline;
   justify-content: space-around;
@@ -121,23 +122,23 @@ body {
 }
 
 /*Links*/
-.img-container{
+.img-container {
   margin-top: 20px;
   border: 3px rgb(68, 67, 67) solid;
   border-radius: 15px;
 }
 
-.cover{
+.cover {
   width: 400px;
   border-radius: 12px;
 }
 
-.goto-echos{
-  color: #F8F9F4;
+.goto-echos {
+  color: #f8f9f4;
   text-decoration: none;
 }
 
-.links-container{
+.links-container {
   display: flex;
   justify-content: center;
 }

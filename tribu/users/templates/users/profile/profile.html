@@ -40,9 +40,16 @@
       {% endif %}
     </div>
     {% if request.user == profile.user %}
-      <div class="edit-profile">
-        <p><a href="{% url 'users:user-edit' profile.user.username %}">Editar perfil</a></p>
-      </div>
+
+          <span class="pill-option pill-edit">
+            <p>
+              <a href="{% url 'users:user-edit' profile.user.username %}">
+                Edit profile
+                <ion-icon name="create-outline"></ion-icon>
+              </a>
+            </p>
+          </span>    
+
     {% endif %}
   </div>
 

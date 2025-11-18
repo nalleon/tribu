@@ -1,10 +1,12 @@
 .img-container{
   margin-top: 20px;
   text-align: center;
+  border: none;
 }
 
 .img-pfp{
-  width: 5rem;
+  width: 15rem;
+  border-radius: 100%;
 }
 
 .pfp-info{
@@ -184,4 +186,45 @@ a {
   font-style: bold;
   margin: 0 auto;
   color: black;
+}
+
+.pill-option.pill-delete p, .pill-option.pill-edit p{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin: 0 0 0.5rem 0;
+}
+
+.pill-option.pill-delete p{
+  background-color: #8b6060; 
+  transition: background-color 0.25s ease;
+}
+
+
+.pill-option.pill-edit p{
+  background-color: #8b6085; 
+  transition: background-color 0.25s ease;
+}
+
+.pill-option.pill-edit p:hover {
+  background-color: #d388c9;
+}
+
+.pill-option.pill-delete p:hover {
+  background-color: #c75e5e;
+}
+.pill-option a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #F8F9F4;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.pill-option a ion-icon {
+  font-size: 1rem;
 }
