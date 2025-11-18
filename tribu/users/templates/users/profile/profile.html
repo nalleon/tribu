@@ -25,10 +25,11 @@
     </div>
     <div class="pfp-info">
       <div class="info-row">
-        <span><b>{{profile.user.first_name}} {{profile.user.last_name}}</b></span>
-        <span>{{profile.user.email}}</span>
+        <span class="info-pill">{{profile.user.first_name}} {{profile.user.last_name}}</span>
+        <span class="info-pill">{{profile.user.email}}</span>
       </div>
       {% if profile.bio %}
+        <p class="separator-info"></p>
         <p class="bio">
           {{profile.bio}}
         </p>
@@ -40,7 +41,7 @@
     </div>
     {% if request.user == profile.user %}
       <div class="edit-profile">
-        <p><a href="{% url 'users:user-edit' profile.user.username %}">Editar</a></p>
+        <p><a href="{% url 'users:user-edit' profile.user.username %}">Editar perfil</a></p>
       </div>
     {% endif %}
   </div>
@@ -49,15 +50,33 @@
     {% for echo in profile.user.echos.all %}
       {% if forloop.counter0 < 5 %}
         <div class="echoContainer">
-          <span class="pill-username"><p><a href="{% url 'users:profile' echo.user.username %}">@{{ echo.user.username }}</a></p></span>
+
+        <span class="pill-username">
+          <p>
+            <a href="{% url 'users:profile' echo.user.username %}">
+              {{ echo.user.username }}
+              <ion-icon name="person-outline"></ion-icon>
+            </a>
+          </p>
+        </span>
+        <div class="content">
           <p>{{ echo.content | truncatewords:20 }}</p>
-          <p><a href="{% url 'echos:echo-detail' echo.pk %}">Read more here</a></p>
-          <span class="separator"><span>
+        </div>
+        <div class="readmore">
+          <p>
+            <a href="{% url 'echos:echo-detail' echo.pk %}">
+              See full echo
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </a>
+          </p>
+        </div>
+        <div class="meta">
+          <hr class="separator">
           <div class="time">
-              <p>{{ echo.created_at|timesince }}</p>
-            </div>
+            <p>{{ echo.created_at|timesince }}</p>
           </div>
-        <div>
+        </div>
+      </div>
       {% endif %}
     {% empty %}
       <p class="grey-message"><i>No echos yet</i></p>
