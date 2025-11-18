@@ -1,51 +1,76 @@
 {% extends "base.html" %} 
 {% load static %} 
+
 {% block extrahead %}
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
 {% endblock %}
-{% block content %}
-{% include "header.html" %}
-  {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                {{ message }}
-            </li>
-        {% endfor %}
-    </ul>
-  {% endif %}
 
+{% block content %}
+
+{% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+              {{ message }}
+          </li>
+      {% endfor %}
+  </ul>
+{% endif %}
+
+<div class="button-wrapper">
   <p class="custom-button">
     <a href="{% url 'echos:add-echo' %}" class="textButton">Add echo</a>
+    <ion-icon name="add-outline"></ion-icon>
   </p>
+</div>
 
-  {% if echos|length > 0 %}
-    {% if echos|length > 1 %}
-      <p>Tribu has posted {{echos|length}} echos so far!</p>
-    {% else %}
-      <p>Tribu has posted {{echos|length}} echo so far!</p>
-    {% endif %}
-    <div class="list">
-      {% for echo in echos %}
+
+{% if echos|length > 0 %}
+  {% if echos|length > 1 %}
+    <p class="echo-info">Tribu has posted {{echos|length}} echos so far!</p>
+  {% else %}
+    <p class="echo-info">Tribu has posted {{echos|length}} echo so far!</p>
+  {% endif %}
+
+  <div class="list">
+    {% for echo in echos %}
       <div class="echoContainer">
-        <span class="pill-username"><p><a href="{% url 'users:profile' echo.user.username %}">@{{ echo.user.username }}</a></p></span>
+
+        <span class="pill-username">
+          <p>
+            <a href="{% url 'users:profile' echo.user.username %}">
+              {{ echo.user.username }}
+              <ion-icon name="person-outline"></ion-icon>
+            </a>
+          </p>
+        </span>
+
         <div class="content">
           <p>{{ echo.content | truncatewords:20 }}</p>
         </div>
+
         <div class="readmore">
-          <p><a href="{% url 'echos:echo-detail' echo.pk %}">View more</a></p>
+          <p>
+            <a href="{% url 'echos:echo-detail' echo.pk %}">
+              See full echo
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </a>
+          </p>
         </div>
-        <hr class="separator">
-        <div class="time">
+
+        <div class="meta">
+          <hr class="separator">
+          <div class="time">
             <p>{{ echo.created_at|timesince }}</p>
           </div>
         </div>
-        {% endfor %}
-    <div>
-  {% else %}
-    <p class="grey-message"><i>No echos yet.</i></p>
-    </div>
-    {%endif%}
+
+      </div>
+    {% endfor %}
   </div>
-  
+
+{% else %}
+  <p class="grey-message"><i>No echos yet.</i></p>
+{% endif %}
+
 {% endblock %}

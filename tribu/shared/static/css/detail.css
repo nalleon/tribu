@@ -1,0 +1,277 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.echoContainer {
+  background-color: #212125;
+  width: 40rem;
+  border-radius: 10px;
+  color: aliceblue;
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 1px rgb(68, 67, 67) solid;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.echoContainer p {
+  color: aliceblue;
+  text-align: justify;
+}
+
+.content {
+  flex-grow: 1;
+  word-wrap: break-word;
+}
+
+.meta {
+  bottom: 0.8rem;
+  left: 1rem;
+  right: 1rem;
+}
+
+.separator {
+  margin-top: 0.8rem;
+  border-top: 2px solid #555;
+  margin-bottom: 0.4rem;
+}
+
+.time {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.time p {
+  color: rgb(163, 165, 164);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: end;
+  justify-items: end;
+}
+
+.row-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.other-options {
+  display: flex;
+  gap: 10px;
+}
+
+.pill-option.pill-delete p, .pill-option.pill-edit p{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin: 0 0 0.5rem 0;
+}
+
+.pill-option.pill-delete p{
+  background-color: #8b6060; 
+  transition: background-color 0.25s ease;
+}
+
+
+.pill-option.pill-edit p{
+  background-color: #8b6085; 
+  transition: background-color 0.25s ease;
+}
+
+.pill-option.pill-edit p:hover {
+  background-color: #d388c9;
+}
+
+.pill-option.pill-delete p:hover {
+  background-color: #c75e5e;
+}
+.pill-option a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #F8F9F4;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.pill-option a ion-icon {
+  font-size: 1rem;
+}
+
+
+.user {
+  justify-content: flex-start;
+}
+
+.pill-username p {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #72A99F;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin: 0 0 0.5rem 0;
+  transition: background-color 0.25s ease;
+}
+
+.pill-username a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #F8F9F4;    
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.pill-username a ion-icon {
+  font-size: 1rem;
+}
+
+.pill-username p:hover {
+  background-color: #3A5DC6;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.pill p {
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  width: 2rem;
+  height: 2rem;
+  font-size: x-large;
+  font-style: bold;
+  margin: 0 auto;
+  color: black;
+}
+
+
+.echo-info {
+  color: #72A99F;
+  font-variant: small-caps;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.waves-row {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 40rem;
+  height: 4rem;
+  margin: 2rem;
+  color: aliceblue;
+  position: relative;
+  border-bottom: 1px solid #72A99F;
+}
+
+.waves-title {
+  display: flex;
+  align-items: center;
+  font-style: italic;
+  font-variant: small-caps;
+  font-size: 30px;
+  color:  #72A99F;;
+}
+
+.waves-create {
+  display: flex;
+  align-items: center;
+}
+
+.waves-label {
+  font-weight: 700;
+}
+
+.custom-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #72A99F;
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: 1px solid #72A99F;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.custom-button a {
+  color: #F8F9F4;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.custom-button ion-icon {
+  font-size: 1.2rem;
+  color: #F8F9F4;
+}
+
+.custom-button:hover {
+  background-color: #3A5DC6;
+  border-color: #3c61ce;
+}
+
+
+.waves-viewall {
+  margin-left: 2rem;    
+  margin-top: -1rem;    
+  padding-bottom: 1rem;
+}
+
+.waves-viewall a {
+  color: #72A99F;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.readmore {
+  bottom: 3.2rem;       
+  right: 1rem;           
+  text-align: right;
+}
+
+.readmore a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #72A99F;        
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.readmore a ion-icon {
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+
+.readmore a:hover {
+  color: #3A5DC6;        
+}
+
+.readmore a:hover ion-icon {
+  transform: translateX(4px);
+}

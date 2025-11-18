@@ -2,19 +2,32 @@
   <div class="row">
     <div class="main-header">
       <p class="title">
-        <a href="{% url 'index' %}"> tribu </a>
+        <a href="{% url 'echos:echo-list' %}"> tribu </a>
       </p>
-      {% comment %}
-      <h2>{{ subtitle }}</h2>
-      {% endcomment %}
     </div>
+
     <div class="auth">
-      <p>
-        {% if user.is_authenticated %}
-        <a href="{% url 'users:me' %}"> {{ user.username }} </a> |
-        <a href="{% url 'logout' %}">Logout</a>
-        {% endif %}
-      </p>
+      {% if user.is_authenticated %}
+      <div class="auth-container">
+
+        <a href="{% url 'users:me' %}" class="auth-user">
+          <div class="avatar">
+            {% if user.profile.avatar and user.profile.avatar.url %}
+              <img src="{{ user.profile.avatar.url }}" alt="avatar">
+            {% else %}
+              <span class="avatar-fallback">{{ user.username|first|upper }}</span>
+            {% endif %}
+          </div>
+
+          <span class="username">{{ user.username }}</span>
+        </a>
+
+        <a href="{% url 'logout' %}" class="logout-btn">
+          <ion-icon name="log-out-outline"></ion-icon>
+        </a>
+
+      </div>
+      {% endif %}
     </div>
   </div>
 </div>

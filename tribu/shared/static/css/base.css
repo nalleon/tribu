@@ -1,42 +1,100 @@
 body {
-  background-color: rgb(49, 49, 49);
-  color: white;
+  background-color: #121212;
+  color: #f8f9f4;
   font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 0;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0;
 }
 
+/* Header general */
 .header {
   background-color: #212125;
   padding: 1.5rem;
-  text-align: center;
 }
 
 .row {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.main-header {
-  text-align: left;
-  font-size: 30px;
-}
-
-.title {
+/* Title */
+.main-header .title {
+  font-size: 3rem;
+  margin: 0;
   font-variant: small-caps;
-  width: 49rem;
 }
 
-.title a:link {
+.title a {
+  color: white;
   text-decoration: none;
 }
 
-.auth {
-  flex-direction: row-reverse;
-  text-align: end;
+/* AUTH SECTION NUEVA */
+.auth-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
+
+.auth-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: #F8F9F4;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #3A5DC6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-fallback {
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.logout-btn {
+  display: inline-flex;
+  padding: 8px 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 0.25s ease;
+}
+
+.logout-btn ion-icon {
+  font-size: 1.3rem;
+  color: #F8F9F4;
+}
+
+.logout-btn:hover {
+  background-color: #3A5DC6;
+}
+
 
 .grey-message {
   color: grey;
@@ -55,13 +113,6 @@ body {
   text-align: center;
 }
 
-.custom-button {
-  border: solid 1px white;
-  border-radius: 10px;
-
-  background-color: white;
-  padding: 10px;
-}
 
 .info-row {
   display: inline;

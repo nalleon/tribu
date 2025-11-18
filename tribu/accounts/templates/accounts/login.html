@@ -1,7 +1,9 @@
 {% extends "base.html" %} 
 {% load static %} 
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock %}
 {% block content %} 
-{% include "header.html" with subtitle="Login" %}
 
 {% if messages %}
   <ul class="messages">
@@ -13,12 +15,19 @@
   </ul>
 {% endif %}
 
-<form method="post" novalidate>
-  {% csrf_token %} {{ form }}
-  <input type="submit" value="Login" />
-</form>
-<div>
-  <p><a href="{% url 'signup' %}">¿No tienes cuenta?</a></p>
+<div class="formContainer">
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form }}
+
+    <div class="form-btn">
+      <input type="submit" value="Login" />
+
+      <span class="pill-form">
+        <p><a href="{% url 'signup' %}">Don't have an account?</a></p>
+      </span>
+    </div>
+  </form>
 </div>
 
 {% endblock %}

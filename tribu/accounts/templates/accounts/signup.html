@@ -1,14 +1,22 @@
 {% extends "base.html" %} 
 {% load static %}
-{% block content %}
-{% include "header.html" with subtitle="Login" %}
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock %}
+{% block content %} 
+<div class="formContainer">
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form }}
 
-<form method="post" novalidate>
-  {% csrf_token %} {{ form }}
-  <input type="submit" value="Sign up" />
-</form>
+    <div class="form-btn">
+      <input type="submit" value="Sign up" />
 
-<div>
-  <p><a href="{% url 'login' %}">¿Ya tienes cuenta?</a></p>
+      <span class="pill-form">
+        <p><a href="{% url 'login' %}">Have an account?</a></p>
+      </span>
+    </div>
+  </form>
 </div>
+
 {% endblock %}
