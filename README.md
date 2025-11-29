@@ -1,6 +1,6 @@
 <div align="justify">
 
-# supertodo
+# tribu
 #### 📜 Autores: Pedro Martín Escula ([@PeterMartEsc](https://github.com/PeterMartEsc)) & Nabil León Álvarez ([@nalleon](https://github.com/nalleon)) 
 
 <br>
